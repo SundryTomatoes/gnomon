@@ -192,7 +192,7 @@ class husk:
                 self.imgs[i] = resize(self.imgs[i], self.imgs[0].shape)
                 self.data.at[i, 'Shape'] = self.imgs[i].shape
                 
-    def blend(self, save_filename):
+    def blend(self, save_filename=""):
         """
         Combine the pictures. Automatically saves as a new file.
 
@@ -211,9 +211,11 @@ class husk:
 
         self.comp_img = ((tot - tot.min()) / (tot.max() - tot.min()))
         
-        # file = tempfile.TemporaryFile(prefix='compositeImage_', suffix='.jpg', dir='comp_imgs').name
-        file = os.path.join('comp_imgs', save_filename)
-        imageio.imwrite(file, self.comp_img)
+        if len(save_filename) > 0:
+            # file = tempfile.TemporaryFile(prefix='compositeImage_', suffix='.jpg', dir='comp_imgs').name
+            file = os.path.join('comp_imgs', save_filename)
+            imageio.imwrite(file, self.comp_img)
+            print("Saving image as: %s" % (save_filename))
         
     def show_img(self, i):
         """
