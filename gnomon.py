@@ -17,6 +17,11 @@ import datetime
 from IPython.display import clear_output
 from PIL import Image
 
+"""
+Includes Husk object and the function husk2imgDf.
+"""
+
+# GNOMON CLASSES
 
 class husk:
     """
@@ -231,3 +236,20 @@ class husk:
         io.imshow(self.comp_img)
         io.show()
         
+ 
+
+
+# GNOMON FUNCTIONS
+
+  
+def husk2imgDF(husk_obj):
+    """
+    Takes a husk object and converts its image list into an array of
+    flattened arrays.
+    """
+
+    data = []
+    for i in range(len(husk_obj.imgs)):
+        data.append(husk_obj.imgs[i].flatten())
+    
+    return np.array(data)
